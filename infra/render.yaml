@@ -74,3 +74,4 @@ envVars:
     sync: false  # Set manually in Render dashboard
   - key: SENTRY_DSN
     sync: false  # Set manually in Render dashboard
+  # Auto-refresh trigger
