@@ -2,7 +2,7 @@ services:
   - type: web
     name: youtube-bird-studio
     env: docker
-    dockerfilePath: ../Dockerfile
+    dockerfilePath: ./Dockerfile
 
     # Pricing and resources (updated 2026-06-07)
     plan: standard
