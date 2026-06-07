@@ -111,3 +111,10 @@ local_config.py
 *.bak
 *.swp
 .tmp/
+
+# OAuth & Secrets
+youtube_token.json
+*_token.json
+*_credentials.json
+*.pem
+*.key
