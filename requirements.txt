@@ -1,0 +1,40 @@
+# YouTube Bird Studio - Dependencies
+# Python 3.9+
+
+# No external Python packages required - uses only standard library
+# External dependencies:
+# - ffmpeg (audio/video processing)
+# - ffprobe (media introspection)
+# - MoneyPrinterTurbo (video generation engine)
+#
+# Installation:
+# 1. macOS: brew install ffmpeg
+# 2. Linux: apt-get install ffmpeg
+# 3. Windows: https://ffmpeg.org/download.html
+#
+# For optional Instagram upload:
+# - authlib>=1.2.0 (uncomment below to enable)
+
+# OAuth & API
+authlib>=1.2.0  # OAuth provider integration
+google-auth-oauthlib>=1.0.0  # Google OAuth
+google-auth-httplib2>=0.2.0  # Google Auth HTTP
+google-api-python-client>=2.80.0  # YouTube API
+requests>=2.28.0  # HTTP requests for Graph API
+
+# Database dependencies:
+sqlalchemy>=2.0.0  # ORM
+psycopg2-binary>=2.9.0  # PostgreSQL adapter
+alembic>=1.13.0  # Database migrations
+
+# Payment & Subscription (optional):
+stripe>=5.15.0  # Payment processing
+
+# Cloud/Production dependencies (optional):
+sentry-sdk>=1.40.0  # Optional: for error tracking and monitoring
+
+# Development dependencies (optional):
+pytest>=7.0.0  # Testing framework
+pytest-cov>=4.0.0  # Coverage reporting
+black>=23.0.0  # Code formatting
+mypy>=1.0.0  # Type checking

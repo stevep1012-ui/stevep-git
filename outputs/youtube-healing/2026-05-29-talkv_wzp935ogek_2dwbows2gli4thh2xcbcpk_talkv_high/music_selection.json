@@ -1,0 +1,26 @@
+{
+  "track": {
+    "track_id": "musopen-salut-damour-felipe-sarro",
+    "title": "Elgar - Salut d'Amour",
+    "artist": "Felipe Sarro",
+    "duration_seconds": 210,
+    "local_path": "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/Downloads/Salut d'amour, Op. 12 (solo piano arr.).mp3",
+    "mood_tags": [
+      "calm",
+      "classical",
+      "piano",
+      "romantic"
+    ],
+    "has_vocals": false,
+    "strong_beat": false,
+    "evidence": {
+      "source_name": "Musopen",
+      "source_url": "https://musopen.org/music/5232-salut-damour-op-12/",
+      "license_terms": "Public domain recording from Musopen for use, copying, performance, distribution, and commercial projects.",
+      "attribution_required": false,
+      "access_date": "2026-05-29"
+    }
+  },
+  "target_gain_db": -28.0,
+  "reason": "Matched moods: calm"
+}

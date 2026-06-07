@@ -1,0 +1,8 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 10.0,
+  "format": "shorts",
+  "codec_video": "h264",
+  "codec_audio": "aac"
+}

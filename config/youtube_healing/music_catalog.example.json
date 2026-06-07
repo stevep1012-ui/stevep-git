@@ -1,0 +1,19 @@
+[
+  {
+    "track_id": "yt-audio-library-example-001",
+    "title": "Replace With Actual YouTube Audio Library Track",
+    "artist": "Replace With Actual Artist",
+    "duration_seconds": 120,
+    "local_path": "assets/music/replace-with-downloaded-track.mp3",
+    "mood_tags": ["calm", "ambient", "forest"],
+    "has_vocals": false,
+    "strong_beat": false,
+    "evidence": {
+      "source_name": "YouTube Audio Library",
+      "source_url": "https://studio.youtube.com/channel/audio-library",
+      "license_terms": "Record the exact license terms shown in YouTube Studio for this track.",
+      "attribution_required": false,
+      "access_date": "2026-05-28"
+    }
+  }
+]

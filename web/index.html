@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YouTube Bird Studio</title>
+
+    <!-- Google Fonts: Inter (모던) + JetBrains Mono (코드) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- Feather Icons (가벼운 SVG 아이콘) -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-workflow-mode="bird">
+    <main class="shell immersive-shell">
+      <header class="topbar">
+        <div>
+          <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="메뉴" style="display: none;">☰</button>
+          <p class="eyebrow">Birdsong video workflow</p>
+          <h1>YouTube Bird Studio</h1>
+          <p>영상, 음악, 자막, 업로드 확인을 순서대로 처리합니다.</p>
+        </div>
+        <div class="user-control">
+          <label for="userIdInput">사용자 ID</label>
+          <input id="userIdInput" type="text" value="local" autocomplete="username" />
+          <button id="refreshButton" class="secondary-button" type="button">새로고침</button>
+        </div>
+      </header>
+
+      <section class="status-row" aria-label="요약">
+        <div class="metric">
+          <span>작업 영상</span>
+          <strong id="packageCount">0</strong>
+        </div>
+        <div class="metric">
+          <span>YouTube 완료</span>
+          <strong id="uploadCount">0</strong>
+        </div>
+        <div class="metric next-action-card">
+          <span>다음 작업</span>
+          <strong id="nextAction">파일 준비</strong>
+        </div>
+      </section>
+
+      <section class="wizard-shell" aria-label="작업 마법사">
+        <div class="progress-track" aria-hidden="true">
+          <span id="wizardProgressFill"></span>
+        </div>
+        <nav class="wizard-nav" aria-label="작업 단계">
+          <button class="wizard-tab is-active" type="button" data-step-target="files" data-step-index="0">
+            <span>1</span>
+            <strong>영상과 음악</strong>
+            <small>파일 가져오기</small>
+          </button>
+          <button class="wizard-tab" type="button" data-step-target="packages" data-step-index="1">
+            <span>2</span>
+            <strong>작업 영상</strong>
+            <small>패키지 선택</small>
+          </button>
+          <button class="wizard-tab" type="button" data-step-target="subtitles" data-step-index="2">
+            <span>3</span>
+            <strong>자막</strong>
+            <small>문구와 위치</small>
+          </button>
+          <button class="wizard-tab" type="button" data-step-target="review" data-step-index="3">
+            <span>4</span>
+            <strong>확인과 업로드</strong>
+            <small>상태 점검</small>
+          </button>
+        </nav>
+
+        <div class="wizard-panel">
+          <section class="workflow-step" data-step="files" aria-labelledby="filesTitle">
+            <div class="step-head">
+              <div>
+                <p class="step-count">1 / 4</p>
+                <h2 id="filesTitle">1. 영상과 음악</h2>
+                <p>먼저 새소리 영상과 배경음악을 가져옵니다.</p>
+              </div>
+              <span id="assetStatus" class="status-pill">대기</span>
+            </div>
+
+            <div class="file-workbench">
+              <div class="import-panel">
+                <div class="asset-toolbar">
+                  <div>
+                    <strong>새 파일 가져오기</strong>
+                    <span id="assetSummaryText">영상 0개 · 사진 0개 · 음악 0개</span>
+                  </div>
+                  <button id="clearAssetsButton" class="secondary-button" type="button">새 작업 비우기</button>
+                </div>
+                <div class="upload-grid import-strip">
+                  <form id="videoForm" class="upload-box upload-action-card" data-kind="video">
+                    <div>
+                      <i data-feather="film"></i>
+                      <strong>영상 파일</strong>
+                      <span>새소리 영상, 숲 영상</span>
+                    </div>
+                    <label for="videoFile">영상 선택</label>
+                    <input id="videoFile" name="file" type="file" accept="video/mp4,video/quicktime,.mp4,.mov,.m4v" />
+                    <button type="submit"><i data-feather="upload"></i> 영상 가져오기</button>
+                  </form>
+                  <form id="imageForm" class="upload-box upload-action-card" data-kind="image">
+                    <div>
+                      <i data-feather="image"></i>
+                      <strong>사진 파일</strong>
+                      <span>썸네일, 정지 이미지 영상</span>
+                    </div>
+                    <label for="imageFile">사진 선택</label>
+                    <input id="imageFile" name="file" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" />
+                    <button type="submit"><i data-feather="upload"></i> 사진 가져오기</button>
+                  </form>
+                  <form id="musicForm" class="upload-box upload-action-card" data-kind="music">
+                    <div>
+                      <i data-feather="music"></i>
+                      <strong>음악 파일</strong>
+                      <span>저작권 확인된 배경음악</span>
+                    </div>
+                    <label for="musicFile">음악 선택</label>
+                    <input id="musicFile" name="file" type="file" accept="audio/mpeg,audio/wav,audio/mp4,.mp3,.wav,.m4a" />
+                    <button type="submit"><i data-feather="upload"></i> 음악 가져오기</button>
+                  </form>
+                </div>
+
+                <div class="asset-grid asset-summary-row">
+                  <div>
+                    <h3>영상</h3>
+                    <div id="videoAssetList" class="asset-list"></div>
+                  </div>
+                  <div>
+                    <h3>사진</h3>
+                    <div id="imageAssetList" class="asset-list"></div>
+                  </div>
+                  <div>
+                    <h3>음악</h3>
+                    <div id="musicAssetList" class="asset-list"></div>
+                  </div>
+                </div>
+
+                <section class="workflow-orchestrator" aria-label="편집 방식 선택">
+                  <div class="mode-heading">
+                    <strong>편집 방식 선택</strong>
+                    <span>파일을 확인한 뒤 자동 편집 방식만 고르세요.</span>
+                  </div>
+                  <button class="mode-card is-active" type="button" data-workflow-mode-target="bird">
+                    <strong>일반 자동 작업</strong>
+                    <span>가져온 영상/사진과 음악으로 바로 합성합니다.</span>
+                  </button>
+                  <button class="mode-card" type="button" data-workflow-mode-target="turbo">
+                    <strong>MoneyPrinterTurbo 연동</strong>
+                    <span>Turbo 결과 영상을 추가로 가져와 함께 편집합니다.</span>
+                  </button>
+                  <p id="workflowModeSummary">가져온 파일로 일반 자동 작업을 진행합니다.</p>
+                </section>
+
+                <div class="turbo-panel" data-workflow-panel="turbo">
+                  <div class="panel-title-row">
+                    <h3>MoneyPrinter Turbo</h3>
+                    <span id="turboStatus" class="status-pill">확인 중</span>
+                  </div>
+                  <div class="turbo-engine-box">
+                    <div class="panel-title-row">
+                      <h4>Turbo 엔진 실행</h4>
+                      <span id="turboEngineStatus" class="status-pill">확인 중</span>
+                    </div>
+                    <label>생성 주제
+                      <input id="turboTopicInput" type="text" value="calm forest birds" autocomplete="off" />
+                    </label>
+                    <button id="runTurboButton" type="button" class="secondary-button">Turbo 생성 실행</button>
+                    <p class="note">`MONEYPRINTER_TURBO_DIR`, `MONEYPRINTER_TURBO_COMMAND`, `MONEYPRINTER_TURBO_OUTPUT_DIR` 경로를 연결한 뒤 실행됩니다.</p>
+                  </div>
+                  <label>Turbo 결과 영상
+                    <select id="turboVideoSelect"></select>
+                  </label>
+                  <button id="importTurboButton" type="button" class="secondary-button">Turbo 결과 가져오기</button>
+                  <p class="note">`MONEYPRINTER_TURBO_OUTPUT_DIR` 폴더의 mp4/mov 결과를 현재 영상 목록으로 가져옵니다.</p>
+                </div>
+              </div>
+
+              <form id="workPackageForm" class="work-package-panel" data-workflow-panel="bird">
+                <div class="panel-title-row">
+                  <h3>작업하기</h3>
+                  <span id="workStatus" class="status-pill">대기</span>
+                </div>
+                <label>영상/사진 이어 붙이기
+                  <select id="workMediaSelect" multiple size="4" required></select>
+                </label>
+                <label>배경음악 이어 붙이기
+                  <select id="workMusicSelect" multiple size="3" required></select>
+                </label>
+                <label>영상 길이
+                  <select id="workDurationSelect" required>
+                    <option value="600">10분</option>
+                    <option value="1200">20분</option>
+                    <option value="1800" selected>30분</option>
+                    <option value="2400">40분</option>
+                    <option value="3000">50분</option>
+                    <option value="3600">1시간</option>
+                    <option value="7200">2시간</option>
+                    <option value="10800">3시간</option>
+                  </select>
+                </label>
+                <label>제목
+                  <input id="workTitleInput" type="text" value="힐링되는 새소리" />
+                </label>
+                <button id="workSubmitButton" type="submit">작업하기</button>
+              </form>
+            </div>
+            <p class="note">휴대폰에서는 사진첩 또는 파일 앱에서 영상을 선택할 수 있습니다. 편집 중에도 새로 가져오기 후 여러 항목을 선택하면 목록 순서대로 이어 붙입니다.</p>
+            <div class="step-actions">
+              <button type="button" data-step-next="packages">작업 영상 확인하기</button>
+            </div>
+          </section>
+
+          <section class="workflow-step hidden" data-step="packages" aria-labelledby="packagesTitle">
+            <div class="step-head">
+              <div>
+                <p class="step-count">2 / 4</p>
+                <h2 id="packagesTitle">2. 작업 영상</h2>
+                <p>합성된 영상을 먼저 확인한 뒤 자막과 업로드 단계로 이동합니다.</p>
+              </div>
+              <span id="lastUpdated" class="status-pill">대기</span>
+            </div>
+            <div id="finalPreviewPanel" class="final-preview-panel hidden">
+              <div class="panel-title-row">
+                <h3>합성 영상 프리뷰</h3>
+                <span id="finalPreviewStatus" class="status-pill">확인 필요</span>
+              </div>
+              <video id="finalPreviewVideo" controls playsinline preload="metadata"></video>
+              <div class="step-actions">
+                <button id="approveFinalPreviewButton" type="button">프리뷰 확인 완료</button>
+              </div>
+            </div>
+            <div id="packageList" class="package-list"></div>
+            <div class="step-actions">
+              <button class="secondary-button" type="button" data-step-next="files">이전</button>
+              <button id="goSubtitleButton" type="button" data-step-next="subtitles">자막 설정하기</button>
+            </div>
+          </section>
+
+          <section class="workflow-step hidden" data-step="subtitles" aria-labelledby="subtitleTitle">
+            <div class="step-head">
+              <div>
+                <p class="step-count">3 / 4</p>
+                <h2 id="subtitleTitle">3. 자막</h2>
+                <p id="selectedPackageSummary">작업 영상을 선택한 뒤 자막을 입힐 수 있습니다.</p>
+              </div>
+              <span id="subtitleStatus" class="status-pill">대기</span>
+            </div>
+
+            <form id="subtitleForm" class="subtitle-form">
+              <label for="subtitlePackage">대상 작업 영상</label>
+              <select id="subtitlePackage" required></select>
+
+              <div class="segmented" role="radiogroup" aria-label="자막 방식">
+                <label><input type="radio" name="subtitleMethod" value="intro_outro" checked /> 시작/끝 문구</label>
+                <label><input type="radio" name="subtitleMethod" value="lower_third" /> 하단 고정 문구</label>
+                <label><input type="radio" name="subtitleMethod" value="timed_captions" /> 시간대별 문구</label>
+              </div>
+
+              <div class="subtitle-panel" data-method-panel="intro_outro">
+                <label for="introText">표시할 문구</label>
+                <input id="introText" type="text" value="숲속에서 들려오는 새소리" />
+                <div class="field-row">
+                  <label>처음에 보여줄 시간 <input id="introSeconds" type="number" min="1" max="20" value="3" /></label>
+                  <label>마지막에 보여줄 시간 <input id="outroSeconds" type="number" min="1" max="20" value="3" /></label>
+                  <label>영상 전체 길이 <input id="subtitleDuration" type="number" min="1" value="37" /></label>
+                </div>
+              </div>
+
+              <div class="subtitle-panel hidden" data-method-panel="lower_third">
+                <label for="lowerText">하단 문구</label>
+                <input id="lowerText" type="text" value="잠시 쉬어가세요" />
+                <div class="field-row">
+                  <label>시작 초 <input id="lowerStart" type="number" min="0" value="2" /></label>
+                  <label>종료 초 <input id="lowerEnd" type="number" min="1" value="8" /></label>
+                </div>
+              </div>
+
+              <div class="subtitle-panel hidden" data-method-panel="timed_captions">
+                <label for="timedLines">시간대별 문구</label>
+                <textarea id="timedLines" rows="4">0,3,아침 숲의 새소리
+4,8,자연의 소리에 잠시 머물러요</textarea>
+                <p class="note">한 줄에 `시작초,종료초,문구` 형식으로 입력합니다.</p>
+              </div>
+
+              <div class="field-row">
+                <label>위치
+                  <select id="subtitlePosition">
+                    <option value="bottom">하단</option>
+                    <option value="center">중앙</option>
+                    <option value="top">상단</option>
+                  </select>
+                </label>
+                <label>자막 크기 <input id="subtitleFontSize" type="number" min="20" max="96" value="44" /></label>
+                <label class="check-label"><input id="subtitleBox" type="checkbox" checked /> 자막 배경 넣기</label>
+              </div>
+
+              <button type="submit">자막 영상 만들기</button>
+            </form>
+            <p class="note">자막은 음악이 합쳐진 `final_video.mp4` 이후 단계에서 적용되고 `subtitled_video.mp4`로 저장됩니다.</p>
+            <div class="step-actions">
+              <button class="secondary-button" type="button" data-step-next="packages">이전</button>
+              <button type="button" data-step-next="review">확인과 업로드 보기</button>
+            </div>
+          </section>
+
+          <section class="workflow-step hidden" data-step="review" aria-labelledby="reviewTitle">
+            <div class="step-head">
+              <div>
+                <p class="step-count">4 / 4</p>
+                <h2 id="reviewTitle">4. 확인과 업로드</h2>
+                <p>선택한 작업 영상의 YouTube, 자막, Instagram 상태를 확인합니다.</p>
+              </div>
+              <span class="status-pill">검토</span>
+            </div>
+            <div id="uploadReview" class="review-panel"></div>
+
+            <!-- YouTube Upload -->
+            <div class="upload-platform-card">
+              <div class="platform-header">
+                <i data-feather="youtube"></i>
+                <h3>YouTube 업로드</h3>
+                <span id="youtubeStatus" class="status-pill">준비됨</span>
+              </div>
+              <form id="youtubeUploadForm" class="upload-form hidden">
+                <label for="youtubeTitle">제목 *</label>
+                <input id="youtubeTitle" type="text" maxlength="100" required />
+
+                <label for="youtubeDescription">설명 *</label>
+                <textarea id="youtubeDescription" maxlength="5000" rows="4" required></textarea>
+
+                <label for="youtubeTags">태그 (쉼표 구분)</label>
+                <input id="youtubeTags" type="text" placeholder="자연, 힐링, ASMR" />
+
+                <label for="youtubePrivacy">공개 설정</label>
+                <select id="youtubePrivacy">
+                  <option value="unlisted">링크 공개 (기본)</option>
+                  <option value="private">비공개</option>
+                  <option value="public">공개</option>
+                </select>
+
+                <div class="form-actions">
+                  <button type="submit" id="youtubeUploadBtn"><i data-feather="upload"></i> YouTube에 업로드</button>
+                  <button type="button" class="secondary-button" id="youtubeAuthBtn">
+                    <i data-feather="log-in"></i> YouTube 연결
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Instagram Upload -->
+            <div class="upload-platform-card">
+              <div class="platform-header">
+                <i data-feather="instagram"></i>
+                <h3>Instagram 업로드</h3>
+                <span id="instagramStatus" class="status-pill">준비됨</span>
+              </div>
+              <form id="instagramUploadForm" class="upload-form hidden">
+                <label for="instagramCaption">캡션 *</label>
+                <textarea id="instagramCaption" maxlength="2200" rows="4" required></textarea>
+
+                <label for="instagramHashtags">해시태그 (쉼표 구분)</label>
+                <input id="instagramHashtags" type="text" placeholder="자연, 힐링, 명상" />
+
+                <div class="form-actions">
+                  <button type="submit" id="instagramUploadBtn"><i data-feather="upload"></i> Instagram에 업로드</button>
+                  <button type="button" class="secondary-button" id="instagramAuthBtn">
+                    <i data-feather="log-in"></i> Instagram 연결
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Upload Progress -->
+            <div id="uploadProgress" class="upload-progress hidden">
+              <div class="progress-item">
+                <div class="progress-label">
+                  <span>업로드 중...</span>
+                  <span id="uploadPercent">0%</span>
+                </div>
+                <div class="progress-container">
+                  <div class="progress-bar" id="uploadProgressBar" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button class="secondary-button" type="button" data-step-next="subtitles">이전</button>
+              <button type="button" data-step-next="files">새 작업 시작</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>

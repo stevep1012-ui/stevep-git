@@ -1,0 +1,26 @@
+{
+  "output_path": "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-05-29-talkv_wzp935ogek_2dwbows2gli4thh2xcbcpk_talkv_high/final_video.mp4",
+  "thumbnail_path": "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-05-29-talkv_wzp935ogek_2dwbows2gli4thh2xcbcpk_talkv_high/thumbnail.jpg",
+  "ffmpeg_command": [
+    "ffmpeg",
+    "-y",
+    "-i",
+    "/private/var/folders/04/stbzyrxd1kzbdq92lq5d26j80000gn/T/TemporaryItems/com.apple.Photos.NSItemProvider/uuid=33B28788-7AFD-481E-8E37-74089D6D7AF9&code=001&library=1&type=3&mode=1&loc=true&cap=true.mp4/_talkv_wzP935oGek_2dwBows2glI4thH2XCBCpK_talkv_high.mp4",
+    "-stream_loop",
+    "-1",
+    "-i",
+    "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/Downloads/Salut d'amour, Op. 12 (solo piano arr.).mp3",
+    "-filter_complex",
+    "[1:a]volume=-28.0dB,atrim=0:37.150114,asetpts=PTS-STARTPTS[music];[0:a]afade=t=in:st=0:d=0.8,afade=t=out:st=35.65:d=1.2[bird];[bird][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
+    "-map",
+    "0:v:0",
+    "-map",
+    "[aout]",
+    "-c:v",
+    "copy",
+    "-c:a",
+    "aac",
+    "-shortest",
+    "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-05-29-talkv_wzp935ogek_2dwbows2gli4thh2xcbcpk_talkv_high/final_video.mp4"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-06-05T07:01:40.299087+00:00",
+  "package_dir": "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2",
+  "video_path": "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2/final_video.mp4",
+  "title": "숲속 새소리 힐링 | 생성형 자연 영상",
+  "description": "생성형 도구로 만든 영상에 라이선스를 확인한 배경음악을 더했습니다.\n사용된 영상·음원 자산의 권리와 공개 적합성을 업로드 전에 다시 확인해 주세요.\n\n#새소리 #숲소리 #힐링영상 #자연소리 #Birdsong #NatureSounds #Shorts",
+  "youtube": {
+    "status": "ready",
+    "privacy_status": "unlisted",
+    "required_env": [
+      "YOUTUBE_CLIENT_SECRET_FILE",
+      "YOUTUBE_TOKEN_FILE"
+    ]
+  },
+  "instagram": {
+    "status": "waiting_for_public_video_url",
+    "media_type": "REELS",
+    "video_url": "",
+    "required_env": [
+      "INSTAGRAM_ACCESS_TOKEN",
+      "INSTAGRAM_USER_ID",
+      "INSTAGRAM_VIDEO_URL"
+    ]
+  }
+}

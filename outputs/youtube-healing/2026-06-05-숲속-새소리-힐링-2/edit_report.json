@@ -1,0 +1,32 @@
+{
+  "output_path": "outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2/final_video.mp4",
+  "thumbnail_path": "outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2/thumbnail.jpg",
+  "ffmpeg_command": [
+    "ffmpeg",
+    "-y",
+    "-stream_loop",
+    "-1",
+    "-i",
+    "outputs/inputs/videos/final-1-2.mp4",
+    "-stream_loop",
+    "-1",
+    "-i",
+    "assets/music/Salut d'amour, Op. 12 (solo piano arr.).mp3",
+    "-filter_complex",
+    "[1:a]volume=-18dB,atrim=0:10.0,asetpts=PTS-STARTPTS[music];[0:a]afade=t=in:st=0:d=0.8,afade=t=out:st=8.50:d=1.2[bird];[bird][music]amix=inputs=2:duration=first:dropout_transition=0[aout]",
+    "-map",
+    "0:v:0",
+    "-map",
+    "[aout]",
+    "-c:v",
+    "libx264",
+    "-pix_fmt",
+    "yuv420p",
+    "-c:a",
+    "aac",
+    "-t",
+    "10",
+    "-shortest",
+    "outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2/final_video.mp4"
+  ]
+}

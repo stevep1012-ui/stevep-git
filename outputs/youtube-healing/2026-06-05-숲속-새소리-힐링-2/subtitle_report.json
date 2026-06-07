@@ -1,0 +1,31 @@
+{
+  "input_path": "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2/final_video.mp4",
+  "output_path": "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2/subtitled_video.mp4",
+  "settings": {
+    "method": "intro_outro",
+    "text": "숲속에서 들려오는 새소리",
+    "intro_seconds": 3,
+    "outro_seconds": 3,
+    "duration_seconds": 10,
+    "position": "bottom",
+    "font_size": 44,
+    "box": true
+  },
+  "ffmpeg_command": [
+    "/Users/stevepark/MoneyPrinterTurbo/.venv/lib/python3.11/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-aarch64-v7.1",
+    "-y",
+    "-i",
+    "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2/final_video.mp4",
+    "-vf",
+    "drawtext=text='숲속에서 들려오는 새소리':x=(w-text_w)/2:y=h-text_h-h*0.12:fontsize=44:fontcolor=white:fontfile='/System/Library/Fonts/AppleSDGothicNeo.ttc':box=1:boxcolor=black@0.38:boxborderw=18:shadowcolor=black@0.55:shadowx=2:shadowy=2:enable='between(t,0.0,3.0)',drawtext=text='숲속에서 들려오는 새소리':x=(w-text_w)/2:y=h-text_h-h*0.12:fontsize=44:fontcolor=white:fontfile='/System/Library/Fonts/AppleSDGothicNeo.ttc':box=1:boxcolor=black@0.38:boxborderw=18:shadowcolor=black@0.55:shadowx=2:shadowy=2:enable='between(t,7.0,10.0)'",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-crf",
+    "20",
+    "-c:a",
+    "copy",
+    "/Users/stevepark/Library/Mobile Documents/com~apple~CloudDocs/My/Coding/Youtube_bird/outputs/youtube-healing/2026-06-05-숲속-새소리-힐링-2/subtitled_video.mp4"
+  ]
+}

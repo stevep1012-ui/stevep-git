@@ -1,0 +1,10 @@
+{
+  "blockers": [
+    {
+      "code": "privacy_review_required",
+      "severity": "warning",
+      "message": "Privacy notes mention visible private information. Manual review is required."
+    }
+  ],
+  "info": []
+}

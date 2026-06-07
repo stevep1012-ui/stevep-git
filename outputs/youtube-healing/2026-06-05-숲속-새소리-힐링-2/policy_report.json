@@ -1,0 +1,9 @@
+{
+  "blockers": [],
+  "info": [
+    {
+      "code": "ready_for_review",
+      "message": "No blocking policy issues found. User review is still required before upload."
+    }
+  ]
+}

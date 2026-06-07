@@ -1,0 +1,47 @@
+{
+  "youtube_video_id": "sZPXLsSICjo",
+  "youtube_response": {
+    "kind": "youtube#video",
+    "etag": "5fzC6NmPGyqAj7uz9nJk5Ocyb5w",
+    "id": "sZPXLsSICjo",
+    "snippet": {
+      "publishedAt": "2026-05-29T09:03:16Z",
+      "channelId": "UCMXM0xK-5Vzubk_Iwa6YfCA",
+      "title": "힐링되는 새소리",
+      "description": "직접 촬영한 숲속 영상과 새소리에 조용한 배경음악을 낮게 더한 짧은 영상입니다.\n새소리와 자연의 분위기를 편안하게 감상해 주세요.\n\n#새소리 #숲소리 #힐링영상 #자연소리 #Birdsong #NatureSounds #Shorts",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/sZPXLsSICjo/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/sZPXLsSICjo/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/sZPXLsSICjo/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "스티브의 사찰이야기",
+      "categoryId": "22",
+      "liveBroadcastContent": "none",
+      "localized": {
+        "title": "힐링되는 새소리",
+        "description": "직접 촬영한 숲속 영상과 새소리에 조용한 배경음악을 낮게 더한 짧은 영상입니다.\n새소리와 자연의 분위기를 편안하게 감상해 주세요.\n\n#새소리 #숲소리 #힐링영상 #자연소리 #Birdsong #NatureSounds #Shorts"
+      }
+    },
+    "status": {
+      "uploadStatus": "uploaded",
+      "privacyStatus": "unlisted",
+      "license": "youtube",
+      "embeddable": true,
+      "publicStatsViewable": true,
+      "selfDeclaredMadeForKids": false
+    }
+  },
+  "privacy_status_requested": "unlisted"
+}

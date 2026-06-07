@@ -1,0 +1,70 @@
+[
+  {
+    "track_id": "yt-calm-forest-001",
+    "title": "Forest Ambience",
+    "artist": "YouTube Audio Library",
+    "duration_seconds": 180,
+    "local_path": "assets/music/forest-ambience.mp3",
+    "mood_tags": ["calm", "ambient", "forest", "nature"],
+    "has_vocals": false,
+    "strong_beat": false,
+    "evidence": {
+      "source_name": "YouTube Audio Library",
+      "source_url": "https://studio.youtube.com/channel/audio-library",
+      "license_terms": "Free to use in YouTube videos. Attribution not required.",
+      "attribution_required": false,
+      "access_date": "2026-06-07"
+    }
+  },
+  {
+    "track_id": "yt-relaxing-piano-001",
+    "title": "Peaceful Piano",
+    "artist": "YouTube Audio Library",
+    "duration_seconds": 200,
+    "local_path": "assets/music/peaceful-piano.mp3",
+    "mood_tags": ["calm", "relaxing", "ambient", "piano"],
+    "has_vocals": false,
+    "strong_beat": false,
+    "evidence": {
+      "source_name": "YouTube Audio Library",
+      "source_url": "https://studio.youtube.com/channel/audio-library",
+      "license_terms": "Free to use in YouTube videos. Attribution not required.",
+      "attribution_required": false,
+      "access_date": "2026-06-07"
+    }
+  },
+  {
+    "track_id": "musopen-gentle-wind-001",
+    "title": "Gentle Wind",
+    "artist": "Musopen",
+    "duration_seconds": 240,
+    "local_path": "assets/music/gentle-wind.mp3",
+    "mood_tags": ["calm", "ambient", "nature", "relaxing"],
+    "has_vocals": false,
+    "strong_beat": false,
+    "evidence": {
+      "source_name": "Musopen",
+      "source_url": "https://musopen.org/music/",
+      "license_terms": "Public Domain Music - Free for commercial and personal use",
+      "attribution_required": false,
+      "access_date": "2026-06-07"
+    }
+  },
+  {
+    "track_id": "yt-healing-meditation-001",
+    "title": "Meditation Soundscape",
+    "artist": "YouTube Audio Library",
+    "duration_seconds": 150,
+    "local_path": "assets/music/meditation-soundscape.mp3",
+    "mood_tags": ["calm", "relaxing", "meditative", "ambient"],
+    "has_vocals": false,
+    "strong_beat": false,
+    "evidence": {
+      "source_name": "YouTube Audio Library",
+      "source_url": "https://studio.youtube.com/channel/audio-library",
+      "license_terms": "Free to use in YouTube videos. Attribution not required.",
+      "attribution_required": false,
+      "access_date": "2026-06-07"
+    }
+  }
+]
