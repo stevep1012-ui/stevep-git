@@ -4,7 +4,7 @@ services:
     env: docker
     dockerfilePath: ./Dockerfile
 
-    # Pricing and resources
+    # Pricing and resources (updated 2026-06-07)
     plan: standard
     region: oregon
     numInstances: 1
